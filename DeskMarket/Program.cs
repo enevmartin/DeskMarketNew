@@ -64,7 +64,9 @@ namespace DeskMarket
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
-            app.Run();
+            // Ensure that your app listens on the port specified by the environment variable PORT
+            var port = Environment.GetEnvironmentVariable("PORT") ?? "8080"; // Default to 8080 if PORT is not set
+            app.Run($"http://0.0.0.0:{port}"); // Listen on all IPs and the specified port
         }
     }
 }
